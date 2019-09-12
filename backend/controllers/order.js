@@ -24,3 +24,20 @@ exports.createOrder = (req, res, next) =>{
     );
 }
 
+exports.getOrder = (req, res, next) =>{
+    Order.find().then(
+        (orders) =>{
+            return res.status(200).json({
+                data: orders,
+                message: 'Lists of order for admin approval'
+            })
+        }
+    ).catch(
+        (error) =>{
+            return res.status(400).json({
+                error
+            });
+        }
+    );
+}
+
