@@ -63,3 +63,20 @@ exports.EditOrder = (req, res, next) =>{
         }
     );
 }
+
+exports.deleteOrder = (req, res, next) =>{
+    Order.deleteOne({ id: req.params.id}).then(
+        () => {
+            return res.status(200).json({
+                message: 'Order Deleted Successfully'
+            });
+        }
+    ).catch(
+        (error) => {
+            return res.status(400).json({
+                message: 'Unable to delete order',
+                error
+            })
+        }
+    );
+}
